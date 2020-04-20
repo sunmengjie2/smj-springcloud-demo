@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: consul-client
+  cloud:
+    consul:
+      #链接consul服务注册中心
+      host: localhost
+      port: 8500
+      discovery:
+        #consul可以自定义在注册中心的名字
+        service-name: ${spring.application.name}
+  profiles:
+    active: dev
+server:
+  port: 8181
+#actuator端口
+management:
+  server:
+    port: 9001
+  #开放所有页面节点  默认只开启了health，info两个节点
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  #显示健康具体信息 默认不会显示详细信息
+  endpoint:
+    health:
+      show-details: always
+---
+spring:
+  profiles: dev
+  cloud:
+    consul:
+      config:
+        #是否启用配置中心功能
+        enabled: true
+        #设置配置值的格式
+        format: yaml
+        #设置配置所在目录
+        prefix: config
+        #设置配置的分隔符
+        profile-separator: ':'
+        #配置key的名字,由于Consul是K/V存储，配置存储在对应K的V中
+        data-key: data
