@@ -1,6 +1,7 @@
 package com.sunmj.springcloud.order.service;
 
-import com.sunmj.springcloud.order.model.Order;
+
+import com.sunmj.springcloud.user.model.Order;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ public class OrderService {
         order.setId(id);
         order.setOrderno(System.currentTimeMillis()+"");
         order.setUserId(1);
-        order.setUsername("lisi");
+        order.setUsername("");
         return order;
     }
 

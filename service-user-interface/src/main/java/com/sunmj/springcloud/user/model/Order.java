@@ -1,4 +1,4 @@
-package com.sunmj.springcloud.order.model;
+package com.sunmj.springcloud.user.model;
 
 import lombok.Data;
 
