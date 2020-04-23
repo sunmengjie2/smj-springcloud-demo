@@ -1,23 +1,24 @@
 package com.sunmj.springcloud.order.service;
 
 
+import com.sunmj.springcloud.order.mapper.OrderMapper;
 import com.sunmj.springcloud.user.model.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class OrderService {
+
+    @Autowired
+    OrderMapper orderMapper;
     /**
      * 根据Id 查询order
      * @param id
      * @return
      */
     public Order getOrderById(Integer id){
-        Order order = new Order();
-        order.setId(id);
-        order.setOrderno(System.currentTimeMillis()+"");
-        order.setUserId(1);
-        order.setUsername("");
-        return order;
+
+        return orderMapper.getOrderById(id);
     }
 
 

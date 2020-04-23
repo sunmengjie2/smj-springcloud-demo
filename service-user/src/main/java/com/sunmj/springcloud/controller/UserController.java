@@ -24,13 +24,13 @@ public class UserController {
      */
     @RequestMapping("getUserById")
     public User getUserById(@RequestParam("id") Integer id){
-        log.info("UserId:{}",id+"/////////////////////");
+        log.info("UserId:{}",id+"////////");
         return userService.getUserById(id);
     }
 
     @RequestMapping("getUserByUser")
     public User getUserByUser(@RequestBody User user){
-        log.info("UserId:{}",user.getId()+"/////////////////////");
+        log.info("UserId:{}",user.getId()+"////////");
         return userService.getUserById(user.getId());
     }
 
