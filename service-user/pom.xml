@@ -12,6 +12,11 @@
     <artifactId>service-user</artifactId>
 
     <dependencies>
+        <!--eureka客户端依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
         <!-- web依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          #git仓库  配置仓库应该独立 与代码仓库分开
+          uri: https://gitee.com/weiyizhishang/smj-springcloud-demo.git
+          search-paths:
+          - configfiles
+          #默认拉取的分支
+          default-label: master
+      #从哪个分支去拉去配置文件
+      label: cloud-config
+server:
+  port: 8888
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
