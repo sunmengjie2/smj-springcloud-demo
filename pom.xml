@@ -12,6 +12,7 @@
         <module>service-order</module>
         <module>service-user-interface</module>
         <module>zuul-gateway</module>
+        <module>cloud-gateway</module>
     </modules>
 
     <!--创建Maven项目，继承spring-boot-starter-parent-->

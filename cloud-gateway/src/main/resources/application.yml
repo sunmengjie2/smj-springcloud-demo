@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: cloud-gateway
+    #加载环境配置 路由配置 跨域配置
+  profiles:
+    active: route,cors
+  cloud:
+    gateway:
+      #通过服务名称访问微服务
+      discovery:
+        locator:
+          enabled: true
+  redis:
+    host: 192.168.37.129
+    port: 6379
+    database: 0
+server:
+  port: 8200
+#服务注册中心地址
+eureka:
+  clinet:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: orderService
+          uri: lb://SERVICE-ORDER
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: '#{@hostAddrKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 3
+        - id: userService
+          uri: lb://SERVICE-USER
+          predicates:
+            - Path=/api/user/**
+          filters:
+            - StripPrefix=1
+  profiles: route
+
+---
+spring:
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            # 允许携带认证信息
+            # 允许跨域的源(网站域名/ip)，设置*为全部
+            # 允许跨域请求里的head字段，设置*为全部
+            # 允许跨域的method， 默认为GET和OPTIONS，设置*为全部
+            # 跨域允许的有效期
+            allow-credentials: true
+            allowed-origins: "*"
+            #- "http://localhost:8080"
+            #- "http://localhost:13010"
+            allowed-headers: "*"
+            allowed-methods:
+              - OPTIONS
+              - GET
+              - POST
+            max-age: 3600
+  profiles: cors
