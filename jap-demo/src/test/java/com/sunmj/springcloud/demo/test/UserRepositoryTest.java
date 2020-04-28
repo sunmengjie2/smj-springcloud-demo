@@ -194,7 +194,7 @@ public class UserRepositoryTest {
 
     @Test
     public void updateByQery(){
-        int i = userRepository.updatePasswordById("6666", 6);
+        int i = userRepository.updatePasswordById("66666", 6);
         System.out.println(i);
     }
 

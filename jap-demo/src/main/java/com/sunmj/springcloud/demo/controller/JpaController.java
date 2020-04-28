@@ -20,7 +20,7 @@ public class JpaController {
     @Autowired
     RoleRepository roleRepository;
 
-    @RequestMapping("list")
+    @RequestMapping("order")
     public List<Order> list(){
         return orderRepository.findAll();
     }
@@ -28,6 +28,7 @@ public class JpaController {
 
     @RequestMapping("role")
     public List<Role> getRole(){
+
         return roleRepository.findAll();
     }
 
